@@ -9,8 +9,12 @@ simple invisible watermark tool
 >```
 
 ### Usage:
-> - dencrypt:  
->```$ iwm -d SIGNED_FILE``` 
-> 
-> - encrypt:  
->```$ iwm [-v] [-o OUTPUT_FILE] FILE SIGNATURE ```  
+ - #### dencrypt:  
+>```
+>$ iwm -d SIGNED_FILE
+>``` 
+ 
+ - #### encrypt:  
+>```
+>$ iwm [-v] [-o OUTPUT_FILE] FILE SIGNATURE
+>```  
