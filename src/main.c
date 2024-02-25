@@ -11,13 +11,13 @@
 #define false ((char)0)
 typedef char bool;
 
-static char doc[] = "Welcome to IWM";
-static char args_doc[] = "FILE SIGNATURE\nFILE";
+static char doc[] = 
+    "Welcome to IWM";
+static char args_doc[] = 
+    "FILE SIGNATURE\nFILE";
 
-const char *argp_program_version =
-  "iwm version 0.0.1 20240224 (IWM)";
-// const char *argp_program_bug_address =
-//   "<bug-gnu-utils@gnu.org>";
+const char *argp_program_version = 
+    "iwm version 0.0.1 20240224 (IWM)";
 
 typedef struct{
     const char* outputFile;
@@ -92,7 +92,7 @@ int main(int argc, char **argv)
     argp_parse(&argp, argc, argv, 0, 0, &args);
 
     size_t length = strlen(args.imageFile);
-    char outputFileName[length+8];//signed_
+    char outputFileName[length+8];//"signed_"
     if(!args.imageFile){
         goto err;
     }else if(!args.decode && !args.signature){
@@ -156,6 +156,8 @@ int main(int argc, char **argv)
         }
         vlog("encryped image of '%s' was created\n", args.outputFile);
     }
+
+    image_destroy_table(&table);
 
     return 0;
     err:

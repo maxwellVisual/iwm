@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 
+
 typedef struct{
     const char* string;
     size_t size;
@@ -148,13 +149,9 @@ size_t iwm_decode_table(image_table* table, char** buf){
 
     *buf = malloc(majoritySize+1);
     
-    // cb_stream err_out;
-    // cb_create(&err_out, (const char*)&err, table->height * table->width);
-
     for(size_t i=0; i<majoritySize; i++){
         char major_char=0;
         size_t major_count=0;
-        // cb_reset(&err_out);
         for(size_t layer = 0; layer*majoritySize < length; layer++){
             if(err[i+layer*majoritySize]){
                 continue;
