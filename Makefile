@@ -5,9 +5,9 @@ GCC_FLAGS=-fPIC -lpng -O0
 C_SOURCE=$(SRC_DIR)/libiwm.c $(SRC_DIR)/image.c
 OBJ_SRC = $(BUILD_DIR)/obj/image.c.o $(BUILD_DIR)/obj/libiwm.c.o
 
-.PHONY: all always clear iwm static_lib dynamic_lib
+.PHONY: all always clear iwm static_lib dynamic_lib gzip_src
 
-all: clean iwm static_lib dynamic_lib
+all: clean iwm static_lib dynamic_lib gzip_src
 
 $(BUILD_DIR)/obj/%.c.o: $(SRC_DIR)/%.c always objdir
 	gcc $(GCC_FLAGS) -c -o $@ $<
@@ -27,6 +27,11 @@ iwm: clean $(BUILD_DIR)/iwm
 $(BUILD_DIR)/iwm: always static_lib
 	gcc $(OBJ_SRC) $(SRC_DIR)/main.c $(GCC_FLAGS) -o $(BUILD_DIR)/iwm -L$(BUILD_DIR) -liwm -g
 
+gzip_src: clean $(BUILD_DIR)/src.tar.gz $(BUILD_DIR)/src.zip
+$(BUILD_DIR)/src.tar.gz: always
+	tar -czf $(BUILD_DIR)/src.tar.gz Makefile README.md .gitignore src/ LICENSE
+$(BUILD_DIR)/src.zip: always
+	zip -qr $(BUILD_DIR)/src.zip Makefile README.md .gitignore src/ LICENSE
 clean: always
 	rm -rf $(BUILD_DIR)/*
 
